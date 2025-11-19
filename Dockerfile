@@ -3,10 +3,12 @@ FROM elixir:1.15
 # Install build tools and Node.js (needed for Phoenix assets)
 # RUN apk add --no-cache build-base npm git
 
-RUN useradd -ms /bin/bash appuser
-USER appuser
-
 WORKDIR /app
+
+# RUN adduser --disabled-password appuser
+# RUN chown -R appuser:appuser /app
+# USER appuser
+RUN chown -R root:root /app
 
 # Install hex + rebar
 RUN mix local.hex --force && mix local.rebar --force
